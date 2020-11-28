@@ -1,14 +1,14 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const Category = require('./categoryRoutes');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.use('/api/v1/categories', Category);
 
-    res.render('index', {
-        title: 'Lytle Animal Allies Homepage'
-    });
+router.get('/', (req, res) => {  
+    res.send("Hello World");
 });
 
 module.exports = router;

@@ -1,4 +1,4 @@
-CLEARDB_DATABASE_URL: mysql://b9acd580c1388b:62acf6e8@us-cdbr-east-02.cleardb.com/heroku_3edca150b62d35d?reconnect=true
+
 
 CREATE TABLE IF NOT EXISTS `post` (
     post_id bigint(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,

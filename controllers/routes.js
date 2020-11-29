@@ -7,6 +7,8 @@ const { query } = require('./db.config');
 
 const router = express.Router();
 
+const Pet = require('./api-request');
+
 // Homepage Route
 router.get('/', (req, res) => {  
     res.render('index', {
@@ -102,7 +104,18 @@ router.get('/register', (req, res) => {
 
 // Registration Route => from Register Page button
 router.post('/submitRegister', (req, res) => {
-    //TODO 
+    //TODO
+    const registerDetails = req.body;
+    db.query('INSERT INTO user SET ?', 
+    registerDetails,
+    (err, results) => {
+        if (err)
+            console.log(err);
+        console.log(results + " was posted!")
+    });
+    res.redirect('/', {
+        title: 'Homepage'
+    }); 
     // should return to Homepage after registering
 });
 

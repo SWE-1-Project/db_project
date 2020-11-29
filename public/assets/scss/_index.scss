@@ -1,0 +1,275 @@
+/* SCSS Document */
+
+
+/* Banner SCSS */
+
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.banner-area {
+    background: url("/assets/img/stopKillingDogs.jpeg") center;
+    background-size: cover;
+    min-height: 90vh;
+}
+
+.banner-area .primary-btn {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.banner-area .overlay-bg {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.banner-content h1 {
+    color: $whiteColor;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1rem;
+    margin-top: 16rem;
+}
+
+@media (max-width: 991.98px) {
+    .banner-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .banner-content h1 br {
+        display: none;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .banner-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .banner-content h1 {
+        margin-top: 3rem;
+    }
+}
+
+.banner-content .sub-head {
+    max-width: 34rem;
+    margin-bottom: 1.5rem;
+    margin-top: .5rem;
+}
+
+@media (max-width: 960px) {
+    .banner-content br {
+        display: none;
+    }
+}
+
+/* Carousel SCSS */
+
+.container-carousel {
+    margin-top: -17vh;
+    background-color: $whiteColor;
+    z-index: 1;
+    
+    .image-carousel-area {
+        text-align: center !important;
+        width: 100%;
+        -webkit-backface-visibility: visible !important;
+        -moz-backface-visibility: visible !important;
+        -ms-backface-visibility: visible !important;
+        backface-visibility: visible !important;
+        
+        .owl-item {
+            border: thick $blackColor;
+            height: 35vh !important;
+        
+            .single-image-carousel {
+                height: 35vh !important;
+                width: 17.25rem !important;
+                display: inline-block;
+                background: rgba(127, 127, 127, 0.5);
+                margin-left: .25rem  !important;
+                margin-right: .25rem  !important;
+                -webkit-transition: all 0.3s ease 0s;
+                -moz-transition: all 0.3s ease 0s;
+                -o-transition: all 0.3s ease 0s;
+                transition: all 0.3s ease 0s;
+                
+                .img-fluid {
+                    height: 35vh !important;
+                    width: 17.25rem !important;
+                    object-fit: cover !important;
+                }
+            }
+        }    
+    }
+}
+
+@media (max-width: 960px) {
+    .image-carousel-area {
+        margin-top: 0rem;
+    }
+}
+
+@media (max-width: 414px) {
+    .image-carousel-area .active-tstimonial-carousel {
+        padding: 2rem;
+    }
+}
+
+/* Call To SCSS */
+
+
+.callto-top-wrap {
+    background-color: $tertiaryColor;
+    
+    .callto-top-left {
+        text-align: left;
+        
+        h1 {
+            margin-left: 1.5rem;
+        }
+    }
+    
+    .callto-top-right {
+        text-align: right;
+        
+        a {
+            margin-right: 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 960px) {
+    .callto-top-wrap .callto-top-right {
+        margin-top: 2rem;
+    }
+    .callto-top-wrap .callto-top-left h1, .callto-top-wrap .callto-top-right {
+        text-align: center;
+    }
+}
+
+
+/* About  SCSS */
+
+.home-about-area {
+    .home-about-left {
+        img {
+            width: 100%;
+        }
+    }
+    .home-about-right {
+        padding: 0% 20% 0% 5% !important;
+        h1 {
+            padding: 1.5rem 0;
+        }
+        h5 {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+
+        }
+    }
+}
+
+@media (max-width: 1366px) {
+    .home-about-right {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 960px) {
+    .home-about-right {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 413px) {
+    .home-about-right h1 br {
+        display: none;
+    }
+}
+
+
+/* Video SCSS */
+
+.video-area {
+    text-align: center;
+    
+    .video-wrap {
+        background: url("/assets/img/Outside Cattery.jpg") center !important;
+        background-size: contain !important;
+        height: 52vh;
+        
+        .overlay-bg {
+            background-color: $blackColor;
+            opacity: 0.35;
+        }
+        
+        .play-btn {
+            z-index: 2;
+        }
+    }
+}
+
+/* Process SCSS */
+
+.process-area {
+    background-color: $tertiaryColor;
+    .single-process {
+        .fa {
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+        }
+        h4 {
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+        .fa:hover {
+            color: quaternaryColor;
+        }
+    }    
+}
+
+/* Call To Action SCSS */
+
+.calltoaction-area {
+    background: url("/assets/img/head2headDogWoman.jpeg") center;
+    background-size: cover;
+    text-align: center;
+    
+    .overlay-bg {
+        background-color: $secondaryColor;
+        opacity: 0.75;
+    }
+    
+    h1 {
+         z-index: 2;
+    }
+    p {
+        margin: 1.5rem 0;
+        max-width: 52rem;
+        display: inline-block;
+        z-index: 2;
+    }
+    .header-btn {
+        margin: .75rem;
+        z-index: 2;
+    }
+}
+
+@media (max-width: 392px) {
+    .calltoaction-area .flex-row {
+        flex-direction: column !important;
+    }
+}
+
+

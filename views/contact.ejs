@@ -1,0 +1,74 @@
+<%- include('partials/head.ejs') %>
+<%- include('partials/header.ejs') %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <h1 class="text-center" style="margin: 7rem 0 2rem 0;">Contact Us</h1>
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="card col-lg-5 offset-lg-1 d-flex align-items-stretch contact-card">
+            <div class="info">
+                <div class="address">
+                    <i class="fa fa-map-marked"></i>
+                    <h4>Location:</h4>
+                    <p>17971 W. FM 2790 S., Lytle, Texas 78052</p>
+                </div>
+                <div class="email">
+                    <i class="fa fa-envelope"></i>
+                    <h4>Email:</h4>
+                    <a href="mailto:info@lytleanimalallies.org">
+                        <p>info@lytleanimalallies.org</p>
+                    </a>
+                </div>
+                <div class="phone">
+                    <i class="fa fa-phone"></i>
+                    <h4>Call:</h4>
+                    <a href="tel:830-709-3832">
+                        <p>830-709-3832</p>
+                    </a>
+                </div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d398.777785813965!2d-98.80535670638203!3d29.246162013027377!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sus!4v1605764442520!5m2!1sen!2sus"
+                    frameborder="0" style="width: 100%; height: 290px;" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="card col-lg-5 d-flex align-items-stretch contact-card">
+            <form action="/submitContact" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName">Your First Name</label>
+                        <input type="text" class="form-control" name="firstName" id="firstName"
+                            placeholder="Please enter your first name" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lasstName">Your Last Name</label>
+                        <input type="text" class="form-control" name="lastName" id="lastName"
+                            placeholder="Please enter your last name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" class="form-control" name="email" placeholder="Please enter a valid email"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="subject"
+                        placeholder="Please enter a subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea class="form-control" name="message" id="message" rows="10"
+                        placeholder="Please enter your message" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button
+                        class="btn text-center btn-outline-primary btn-md btn-rounded btn-navbar waves-effect waves-light border-quaternary-color text-quaternary-color hover-border-tertiary-color hover-text-tertiary-color">Send
+                        Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('partials/footer.ejs') %>

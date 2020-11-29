@@ -1,0 +1,316 @@
+/* SCSS Document */
+
+.pet-grid9, .pet-grid9 .pet-image9 {
+    position:relative;
+}
+
+.pet-grid9 {
+    font-family:Poppins,sans-serif;
+    z-index: 1;
+     h1 {
+            margin-top: 10rem !important;
+    }
+    .pet-image9 {
+        a {
+            display:block
+        }
+        img {
+             width:100%;
+            height:auto;        
+        }
+    }
+    .pic-1 {
+        opacity:1;
+        transition:all .5s ease-out 0s;
+    }
+    .pic-2 { 
+        position:absolute;
+        top:0;
+        left:0;
+        opacity:0;
+        transition:all .5s ease-out 0s;
+    } 
+    .pet-full-view {
+        color:#505050;
+        background-color:#fff;
+        font-size:16px;
+        height:45px;
+        width:45px;
+        padding:18px;
+        border-radius:100px 0 0;
+        display:block;
+        opacity:0;
+        position:absolute;
+        right:0;
+        bottom:0;
+        transition:all .3s ease 0s;
+    }
+    .pet-full-view:hover {
+        color:#c0392b;
+    }
+    .pet-content {
+        padding:12px 12px 0;
+        overflow:hidden;
+        position:relative;
+        .rating {
+            padding:0;
+            margin:0 0 7px;
+            list-style:none;
+        }
+    }
+    .rating li { 
+        font-size:12px;
+        color:#ffd200;
+        transition:all .3s ease 0s;
+    }
+    .rating li.disable { 
+        color:rgba(0,0,0,.2)
+    }
+    .title { 
+        font-size:16px;
+        font-weight:400;
+        text-transform:capitalize;
+        margin:0 0 3px;
+        transition:all .3s ease 0s;
+    }
+    .title a { 
+        color:rgba(0,0,0,.5);
+    }
+    .title a:hover { 
+        color:#c0392b;
+    }
+    .price { 
+        color:#000;
+        font-size:17px;
+        margin:0;
+        display:block;
+        transition:all .5s ease 0s;
+    }
+    .add-to-cart { 
+        display:block;
+        color:#c0392b;
+        font-weight:600;
+        font-size:14px;
+        opacity:0;
+        position:absolute;
+        left:10px;
+        bottom:-20px;
+        transition:all .5s ease 0s;
+    }
+}
+    
+.pet-grid9:hover {
+    .pic-1 {
+        opacity:0;
+    }
+    .pic-2 {
+        opacity:1;
+    }
+    .pet-full-view {
+        opacity:1;
+    }
+    .price {
+        opacity:0;
+    }
+    .add-to-cart {
+        opacity:1;
+        bottom:0;
+    }
+}
+
+@media only screen and (max-width:990px) {
+    .pet-grid9 {
+        margin-bottom:30px;
+    }
+}
+
+
+
+/* Modal */
+
+#petModal {
+    .modal-dialog {
+        max-width: 80vw !important;
+    }
+}
+
+.breadcrumb-list > li {
+  font-size: 14px;
+  list-style: none;
+  display: inline;
+}
+.breadcrumb-list > li a:after {
+  content: "/";
+  vertical-align: middle;
+  margin: 0 5px;
+  color: #7a7a7a;
+}
+.action-wishlist:hover,
+.action-wishlist:focus{
+  color:#fff;
+}
+.add-to-cart.action-wishlist {
+  width: 50px;
+  text-align: center;
+  padding: 0;
+}
+.add-to-cart.action-wishlist i {
+  margin-right: 0px;
+}
+.pet-add-to-cart .cart-title,
+.pet-add-to-cart .cart-title:hover,
+.pet-list-action .cart-title,
+.pet-list-action .cart-title:hover {
+  background-color: transparent;
+  border-bottom: none;
+  color: inherit;
+}
+.pet-add-to-cart .pro-add-btn i,
+.pet-list-action .pro-add-btn i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+.add-to-cart {
+  display: inline-block;
+}
+.action-wishlist:hover,
+.action-wishlist:focus{
+  color:#fff;
+}
+.add-to-cart.action-wishlist i {
+  margin-right: 0px;
+}
+.pet-add-to-cart {
+  float: none;
+}
+.single-pet-wishlist{
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+}
+.pet-thumbnail .owl-nav  {display: none;}
+.breadcrumb-area {
+    padding: 30px 0;
+    background-color: #f3f3f3;
+}
+.breadmome-name {
+    color: #ff6a00;
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 0 0 18px;
+}
+.breadcrumb-content > ul > li {
+    display: inline-block;
+    list-style: none;
+    position: relative;
+    font-size: 14px;
+    color: #333;
+}
+.breadcrumb-content > ul > li.active{
+    color: #ff6a00;
+}
+.breadcrumb-content > ul > li:after {
+    content: "/";
+    vertical-align: middle;
+    margin: 0 5px;
+    color: #7a7a7a;
+}
+.breadcrumb-content > ul > li:last-child:after{
+    display: none;
+}
+.mt-80 { margin-top: 80px }.mb-80 { margin-bottom: 80px }
+.single-pet-name {
+    font-size: 22px;
+    text-transform: capitalize;
+    font-weight: 900;
+    color: #444;
+    line-height: 24px;
+    margin-bottom: 15px;
+}
+.single-pet-reviews {
+    margin-bottom: 10px;
+}
+.single-pet-price {
+    margin-top: 25px;
+}
+.single-pet-action {
+    margin-top: 30px;
+    padding-bottom: 30px;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    float: left;
+    width: 100%;
+}
+.pet-discount {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.pet-discount span.price {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 30px;
+    display: inline-block;
+    color: #008bff;
+}
+.pet-info {
+    color: #333;
+    font-size: 14px;
+    font-weight: 400;
+}
+.pet-info p {
+    line-height: 30px;
+    font-size: 14px;
+    color: #333;
+    margin-top: 30px;
+}
+.pet-add-to-cart span.control-label {
+    display: block;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    color: #232323;
+    font-size: 14px;
+}
+.pet-add-to-cart {
+    overflow: hidden;
+    margin: 20px 0px;
+    float: left;
+    width: 100%;
+}
+.cart-plus-minus-box {
+    border: 1px solid #e1e1e1;
+    border-radius: 0;
+    color: #3c3c3c;
+    height: 49px;
+    text-align: center;
+    width: 50px;
+    padding: 5px 10px;
+}
+.pet-add-to-cart .cart-plus-minus {
+    margin-right: 25px;
+}
+.cart-plus-minus {
+    position: relative;
+    width: 75px;
+    float: left;
+    padding-right: 25px;
+}
+.add-to-cart {
+    background: #008bff;
+    border: 0;
+    border-bottom: 3px solid #0680e5;
+    color: #fff;
+    box-shadow: none;
+    padding: 0 30px;
+    border-radius: 3px;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: capitalize;
+    height: 50px;
+    line-height: 50px;
+}
+.add-to-cart:hover {
+    background: #ff6a00;
+    border-color: #e96405;
+}

@@ -1,0 +1,40 @@
+/* SCSS Document */
+
+.primary-btn {
+    background-color: $quaternaryColor !important;
+    line-height: 3rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    border: 1px solid transparent !important;
+    border-radius: 0 !important;
+    color: $whiteColor !important;
+    display: inline-block !important;
+    font-weight: 500 !important;
+    position: relative !important;
+    -webkit-transition: all 0.3s ease 0s !important;
+    -moz-transition: all 0.3s ease 0s !important;
+    -o-transition: all 0.3s ease 0s !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+.primary-btn:hover {
+    border: 1px solid $whiteColor !important;
+    background: transparent !important;
+    color: $whiteColor !important;
+}
+
+.header-btn {
+    background: $whiteColor !important;
+    border-radius: 0 !important;
+    color: $blackColor !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    border: 1px solid transparent !important;
+}
+
+.header-btn:hover {
+    border: 1px solid $whiteColor !important;
+    background: transparent !important;
+    color: $whiteColor !important;
+}
+

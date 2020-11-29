@@ -1,0 +1,79 @@
+/* Footer Scss Document */
+
+.footer-area {
+  background: #1e1c27;
+}
+
+.footer-area .single-footer-widget h6 {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.footer-area .single-footer-widget .footer-nav li {
+  margin-bottom: 12px;
+}
+
+.footer-area .single-footer-widget .footer-nav li a {
+  color: #777777;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.footer-area .single-footer-widget .footer-nav li a:hover {
+  color: #fab700;
+}
+
+.footer-area .single-footer-widget .list-contact .lnr {
+  color: #fff;
+  font-size: 18px;
+}
+
+.footer-area .single-footer-widget .list-contact .detail h4 {
+  font-size: 14px;
+  font-weight: 400;
+  margin-left: 20px;
+  color: #fff;
+}
+
+.footer-area .single-footer-widget .list-contact .detail p {
+  margin-left: 20px;
+  margin-top: 8px;
+}
+
+@media (max-width: 960px) {
+  .footer-area .single-footer-widget {
+    margin-bottom: 30px;
+  }
+}
+
+.footer-area .copyright-text {
+  background-color: #23202e;
+  padding: 20px 0;
+}
+
+.footer-area .copyright-text a {
+  color: #fab700;
+}
+
+.footer-area .copyright-text .footer-social {
+  text-align: right;
+}
+
+.footer-area .copyright-text .footer-social a {
+  color: #777777;
+  margin-left: 20px;
+}
+
+.footer-area .copyright-text .footer-social a:hover {
+  color: #fab700;
+}
+
+@media (max-width: 572px) {
+  .footer-area .copyright-text .footer-social {
+    text-align: left;
+    margin-top: 10px;
+  }
+}

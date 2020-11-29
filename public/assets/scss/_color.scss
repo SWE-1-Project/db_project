@@ -1,0 +1,127 @@
+/* Color SCSS Document */
+
+$primaryColor: #b4a288;
+$secondaryColor: #37312a;
+$tertiaryColor: #fff0db;
+$quaternaryColor: #3b5769;
+$quinaryColor: #857c72;
+$blackColor: #000000;
+$whiteColor: #ffffff;
+
+/* Background Colors */
+
+.black,
+.hover-black:hover {
+    color: $whiteColor !important;
+    background-color: $blackColor !important;
+}
+
+.white,
+.hover-white:hover {
+    color: $blackColor !important;
+    background-color: $whiteColor !important;
+}
+
+.primary-color,
+.primary-color:hover {
+    color: $whiteColor !important;
+    background-color: $primaryColor !important;
+}
+
+.secondary-color,
+.hover-secondary-color:hover {
+    color: $whiteColor !important;
+    background-color: $secondaryColor !important;
+}
+
+.tertiary-color,
+.hover-tertiary-color:hover {
+    color: $whiteColor !important;
+    background-color: $tertiaryColor !important;
+}
+
+.quaternary-color,
+.hover-quaternary-color:hover {
+    color: $whiteColor !important;
+    background-color: $quaternaryColor !important;
+}
+
+.quinary-color,
+.hover-quinary-color:hover {
+    color: $whiteColor !important;
+    background-color: $quinaryColor !important;
+}
+
+/* Text Colors */
+
+.text-black,
+.hover-text-black:hover {
+    color: $blackColor !important;
+}
+
+.text-white,
+.hover-text-white:hover {
+    color: $whiteColor !important;
+}
+
+.text-primary-color,
+.hover-text-primary-color:hover {
+    color: $primaryColor !important;
+}
+
+.text-secondary-color,
+.hover-text-secondary-color:hover {
+    color: $secondaryColor !important;
+}
+
+.text-tertiary-color,
+.hover-text-tertiary-color:hover {
+    color: $tertiaryColor !important;
+}
+
+.text-quaternary-color,
+.hover-text-quaternary-color:hover {
+    color: $quaternaryColor !important;
+}
+
+.text-quinary-color,
+.hover-text-quinary-color:hover {
+    color: $quinaryColor !important;
+}
+
+/* Border Colors */
+
+.border-black,
+.hover-border-black:hover {
+    border-color: $blackColor !important;
+}
+
+.border-white,
+.hover-border-white:hover {
+    border-color: $whiteColor !important;
+}
+
+.border-primary-color,
+.hover-border-primary-color:hover {
+    border-color: $primaryColor !important;
+}
+
+.border-secondary-color,
+.hover-border-secondary-color:hover {
+    border-color: $secondaryColor !important;
+}
+
+.border-tertiary-color,
+.hover-border-tertiary-color:hover {
+    border-color: $tertiaryColor !important;
+}
+
+.border-quaternary-color,
+.hover-border-quaternary-color:hover {
+    border-color: $quaternaryColor !important;
+}
+
+.border-quinary-color,
+.hover-border-quinary-color:hover {
+    border-color: $quinaryColor !important;
+}

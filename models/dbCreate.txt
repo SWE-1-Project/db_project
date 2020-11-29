@@ -1,4 +1,12 @@
-
+create table if not exists ‘user’ (
+	user_id BIGINT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	email VARCHAR(50) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	first_name VARCHAR(40) NOT NULL,
+	last_name VARCHAR(40) NOT NULL,
+	role VARCHAR(12) DEFAULT ('Basic'),
+    FOREIGN KEY (user_id) REFERENCES user(user_id)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `post` (
     post_id bigint(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -10,7 +18,10 @@ CREATE TABLE IF NOT EXISTS `post` (
     tag_id tinyint(255) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-                       ON UPDATE CURRENT_TIMESTAMP 
+                       ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (category_id) REFERENCES category(category_id),
+    FOREIGN KEY (tag_id) REFERENCES tag(tag_id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

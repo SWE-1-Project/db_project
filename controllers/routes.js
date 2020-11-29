@@ -10,6 +10,7 @@ const saltRounds = 7;
 const router = express.Router();
 
 const Pet = require('./api-request');
+var sess;
 
 // Homepage Route
 router.get('/', (req, res) => {  
@@ -27,16 +28,18 @@ router.get('/about', (req, res) => {
 
 // Event Page Route
 router.get('/event', (req, res) => {
+    /*
     db.query('SELECT * FROM event WHERE event_date >= CURDATE() ORDER BY event_date ASC', (err, results) => {
         if (err)
             console.log(err);
+            */
         res.render('event', 
         {
-            events: results,
-            date: date,
+            //events: results,
+            //date: date,
             title: 'Events'
         });
-    })
+   // })
 });
 
 // Adopt Page Route
@@ -88,8 +91,10 @@ router.post('/checkSignin', (req, res) => {
                     console.log(err);
                 else if (result == true) {
                     req.session.loggedin = true;
-                    req.session.email = email;
+                    sess = req.session;
+                    sess.email = email;
                     console.log("You successfully logged in " + email);
+                    console.log(sess);
                 } else
                     console.log('Incorrect Email and/or Password!');
             });
@@ -150,26 +155,30 @@ router.post('/submitRegister', (req, res) => {
     });
 });
 
-    
-
 // Create Event Page Route => includes RBAC controls
 router.get('/createEvent', (req, res) => {
-
-
-    db.query('SELECT role FROM user WHERE email = ?', 
-    [req.session.email], 
-    (err, results) => {
-        if (err)
-            console.log(err);
-        else if (results.equals('contributor' || 'admin')) {
-            res.send('Welcome back, ' + req.session.email + '!');
-            res.render('createEvent', {
-                title: 'Create an Event'
-            });
-	    } else {
-            res.status(403).end();
-        }
-    });
+    if (sess.loggedin == true) {
+        db.query('SELECT role FROM user WHERE email = ?', 
+        [sess.email], 
+        (err, results) => {
+            var temp = results[0].role;
+            if (err)
+                console.log(err);
+            else if (temp == 'Contributor' || temp == 'Admin') {
+                res.render('createEvent', {
+                    title: 'Create an Event'
+                });
+            } else {
+                res.render('event', {
+                    title: 'Events'
+                });
+            }
+        });
+	} else {
+        res.render('event', {
+            title: 'Events'
+        });
+    }
 });
 
 // Route to Submit an Event => from Create Event button
@@ -190,20 +199,28 @@ router.post('/submitEvent', (req, res) => {
 
 // Create Post Page Route => includes RBAC controls
 router.get('/createPost', (req, res) => {
-    db.query('SELECT role FROM user WHERE email = ?', 
-    [req.session.email], 
-    (err, results) => {
-        if (err)
-            console.log(err);
-        else if (results.equals('contributor' || 'admin')) {
-            res.send('Welcome back, ' + req.session.email + '!');
-            res.render('createPost', {
-                title: 'Create a Post'
-            });
-	    } else {
-            res.status(403).end();
-        }
-    });
+    if (sess.loggedin == true) {
+        db.query('SELECT role FROM user WHERE email = ?', 
+        [sess.email], 
+        (err, results) => {
+            var temp = results[0].role;
+            if (err)
+                console.log(err);
+            else if (temp == 'Contributor' || temp == 'Admin') {
+                res.render('createPost', {
+                    title: 'Create a Post'
+                });
+            } else {
+                res.render('blog', {
+                    title: 'Blog'
+                });
+            }
+        });
+	} else {
+        res.render('blog', {
+            title: 'Blog'
+        });
+    }
 });
 
 // Route to Submit an Post => from Create Post button
@@ -223,20 +240,28 @@ router.post('/submitPost', (req, res) => {
 
 // Create Category Page Route => includes RBAC controls
 router.get('/createCategory', (req, res) => {
-    db.query('SELECT role FROM user WHERE email = ?', 
-    [req.session.email], 
-    (err, results) => {
-        if (err)
-            console.log(err);
-        else if (results.equals('contributor' || 'admin')) {
-            res.send('Welcome back, ' + req.session.email + '!');
-            res.render('createCategory', {
-                title: 'Create a Category'
-            });
-	    } else {
-            res.status(403).end();
-        }
-    });
+    if (sess.loggedin == true) {
+        db.query('SELECT role FROM user WHERE email = ?', 
+        [sess.email], 
+        (err, results) => {
+            var temp = results[0].role;
+            if (err)
+                console.log(err);
+            else if (temp == 'Contributor' || temp == 'Admin') {
+                res.render('createCategory', {
+                    title: 'Create a Category'
+                });
+            } else {
+                res.render('blog', {
+                    title: 'Blog'
+                });
+            }
+        });
+	} else {
+        res.render('blog', {
+            title: 'Blog'
+        });
+    }
 });
 
 // Route to Submit an Category => from Create Category button
@@ -257,20 +282,28 @@ router.post('/submitCategory', (req, res) => {
 
 // Create Tag Page Route => includes RBAC controls
 router.get('/createTag', (req, res) => {
-    db.query('SELECT role FROM user WHERE email = ?', 
-    [req.session.email], 
-    (err, results) => {
-        if (err)
-            console.log(err);
-        else if (results.equals('contributor' || 'admin')) {
-            res.send('Welcome back, ' + req.session.email + '!');
-            res.render('createTag', {
-                title: 'Create a Tag'
-            });
-	    } else {
-            res.status(403).end();
-        }
-    });
+    if (sess.loggedin == true) {
+        db.query('SELECT role FROM user WHERE email = ?', 
+        [sess.email], 
+        (err, results) => {
+            var temp = results[0].role;
+            if (err)
+                console.log(err);
+            else if (temp == 'Contributor' || temp == 'Admin') {
+                res.render('createTag', {
+                    title: 'Create a Tag'
+                });
+            } else {
+                res.render('blog', {
+                    title: 'Blog'
+                });
+            }
+        });
+	} else {
+        res.render('blog', {
+            title: 'Blog'
+        });
+    }
 });
 
 // Route to Submit a Tag => from Create Tag button

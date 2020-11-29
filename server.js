@@ -9,9 +9,10 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(session({
-    secret: 'secret',
+    secret: 'dogs and cats',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    expire: 604800000
 }));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

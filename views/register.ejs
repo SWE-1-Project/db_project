@@ -17,17 +17,13 @@
                     </div>
                     <div class="form-group col-md-6 md-form md-outline form-lg">
                         <input type="text" class="form-control form-control-lg" id="lastName" name="lastName" required>
-                        <label for="lastName">Last</label>
+                        <label for="lastName">Last Name</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12 md-form md-outline form-lg">
-                        <input type="text" class="form-control form-control-lg" id="address1" name="address1" required>
-                        <label for="address1">Address</label>
-                    </div>
-                    <div class="form-group col-md-12 md-form md-outline form-lg">
-                        <input type="text" class="form-control form-control-lg" id="address2" name="address2">
-                        <label for="address2">Apartment, studio, or floor</label>
+                        <input type="text" class="form-control form-control-lg" id="address" name="address" required>
+                        <label for="address">Address</label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -98,6 +94,12 @@
                         <label for="zipCode">Zip</label>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12 md-form md-outline form-lg">
+                        <input type="tel" class="form-control form-control-lg" id="phoneNumber" name="phoneNumber"  pattern="\([0-9]{3}\) [0-9]{3}-[0-9]{4}" required>
+                        <label for="phoneNumber">Telephone Number</label>
+                    </div>
+                </div>    
                 <div class="form-row">
                     <div class="form-group col-md-6 md-form md-outline form-lg">
                         <input type="email" class="form-control form-control-lg" id="email" name="email" required>

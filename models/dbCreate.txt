@@ -1,19 +1,29 @@
-create table if not exists ‘user’ (
+CREATE TABLE IF NOT EXISTS `user` (
 	user_id BIGINT(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	email VARCHAR(50) NOT NULL,
-	password VARCHAR(255) NOT NULL,
+	password VARCHAR(72) NOT NULL,
 	first_name VARCHAR(40) NOT NULL,
 	last_name VARCHAR(40) NOT NULL,
-	role VARCHAR(12) DEFAULT ('Basic'),
-    FOREIGN KEY (user_id) REFERENCES user(user_id)
+	role VARCHAR(12) DEFAULT 'Basic',
+    FOREIGN KEY (email) REFERENCES user_information(email)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `user_information` (
+    email VARCHAR(50) NOT NULL PRIMARY KEY,
+    address VARCHAR(60) NOT NULL,
+    city VARCHAR(25) NOT NULL,
+    state VARCHAR(3) NOT NULL,
+    zip_code INT(6) NOT NULL,
+    phone_number VARCHAR(15) NOT NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 CREATE TABLE IF NOT EXISTS `post` (
-    post_id bigint(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    user_id bigint(255) NOT NULL,
+    post_id bigint(49999) PRIMARY KEY AUTO_INCREMENT,
+    user_id bigint(49999) NOT NULL,
     title varchar(50) NOT NULL,
     image varchar(50) NOT NULL,
-    content varchar(255) NOT NULL,
+    content LONGTEXT NOT NULL,
     category_id tinyint(255) NOT NULL,
     tag_id tinyint(255) NOT NULL,
     created_at DATETIME NOT NULL,
@@ -26,28 +36,31 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 
 CREATE TABLE IF NOT EXISTS `event` (
-  event_id bigint(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  event_id bigint(255) PRIMARY KEY AUTO_INCREMENT,
   user_id bigint(255) NOT NULL,
   title varchar(50) NOT NULL,
   image varchar(50) NOT NULL,
   event_date DATETIME NOT NULL,
-  content varchar(255) NOT NULL,
+  content LONGTEXT NOT NULL,
   category_id tinyint(255) NOT NULL,
   tag_id tinyint(255) NOT NULL,
   created_at DATETIME NOT NULL,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
-                     ON UPDATE CURRENT_TIMESTAMP 
+                     ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(user_id),
+    FOREIGN KEY (category_id) REFERENCES category(category_id),
+    FOREIGN KEY (tag_id) REFERENCES tag(tag_id) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `category` (
-    category_id tinyint(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    category_id tinyint(255) PRIMARY KEY AUTO_INCREMENT,
     name varchar(24) NOT NULL,
     slug varchar(24) NOT NULL,
     description varchar(255) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `tag` (
-    tag_id tinyint(255) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    tag_id tinyint(255) PRIMARY KEY AUTO_INCREMENT,
     name varchar(24) NOT NULL,
     slug varchar(24) NOT NULL,
     description varchar(255) NOT NULL

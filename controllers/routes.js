@@ -4,6 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const db = require('./db.config');
 const { query } = require('./db.config');
+const bcrypt = require('bcrypt');
+const saltRounds = 7;
 
 const router = express.Router();
 
@@ -75,19 +77,28 @@ router.post('/checkSignin', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     if (email && password) {
-        db.query('SELECT * FROM user WHERE email = ? AND password = ?',
-        [email, password], 
-        (err, results, fields) => {
-            if (results.length > 0) {
-                req.session.loggedin = true;
-                req.session.email = email;
-                res.redirect('/');
-            } else {
-                res.send('Incorrect Email and/or Password!');
-            }
-            res.end();
+        db.query('SELECT password FROM user WHERE email = ?',
+        email, 
+        (err, results) => {
+            if (err)
+                console.log(err);
+            console.log(results[0].password);
+            bcrypt.compare(password, results[0].password, (err, result) => { 
+                if (err)
+                    console.log(err);
+                else if (result == true) {
+                    req.session.loggedin = true;
+                    req.session.email = email;
+                    console.log("You successfully logged in " + email);
+                } else
+                    console.log('Incorrect Email and/or Password!');
+            });
         });
+        res.render('index', {
+            title: 'Homepage'  
+          });
     } else {
+        console.log("Error " + email + ", " + password);
         res.render('register', {
             title: 'Register',
             message: 'Please register for an account.'
@@ -104,23 +115,47 @@ router.get('/register', (req, res) => {
 
 // Registration Route => from Register Page button
 router.post('/submitRegister', (req, res) => {
-    //TODO
-    const registerDetails = req.body;
-    db.query('INSERT INTO user SET ?', 
-    registerDetails,
-    (err, results) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const address = req.body.address;
+    const city = req.body.city;
+    const state = req.body.state;
+    const zipCode = req.body.zipCode;
+    const phoneNumber = req.body.phoneNumber;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    bcrypt.genSalt(saltRounds, (err, salt) => {
         if (err)
             console.log(err);
-        console.log(results + " was posted!")
+        bcrypt.hash(password, salt, (err, hash) => {
+            if (err)
+                console.log(err);
+            db.query("INSERT INTO user_information (email,address,city,state,zip_code,phone_number) VALUES ('" + email + "','" + address + "','" + city + "','" + state + "'," + zipCode + ",'" + phoneNumber + "')",
+            (err, results) => {
+                if (err)
+                    console.log(err);
+                console.log(results + " was posted to user_information!")
+                db.query("INSERT INTO user (email,password,first_name,last_name) VALUES ((SELECT email FROM user_information WHERE email = '" + email + "'),'" + hash + "','" + firstName + "','" + lastName + "')",
+                (err, results) => {
+                    if (err)
+                        console.log(err);
+                    console.log(results + " was posted to user!")
+                    res.render('index', {
+                        title: 'Homepage'
+                    });
+                });
+            });
+        });
     });
-    res.redirect('/', {
-        title: 'Homepage'
-    }); 
-    // should return to Homepage after registering
 });
+
+    
 
 // Create Event Page Route => includes RBAC controls
 router.get('/createEvent', (req, res) => {
+
+
     db.query('SELECT role FROM user WHERE email = ?', 
     [req.session.email], 
     (err, results) => {

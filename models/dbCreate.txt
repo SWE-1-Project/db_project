@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS `user_information` (
 
 
 CREATE TABLE IF NOT EXISTS `post` (
-    post_id bigint(49999) PRIMARY KEY AUTO_INCREMENT,
-    user_id bigint(49999) NOT NULL,
+    post_id bigint(64) PRIMARY KEY AUTO_INCREMENT,
+    user_id bigint(64) NOT NULL,
     title varchar(50) NOT NULL,
     image varchar(50) NOT NULL,
     content LONGTEXT NOT NULL,
@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `post` (
 
 
 CREATE TABLE IF NOT EXISTS `event` (
-  event_id bigint(255) PRIMARY KEY AUTO_INCREMENT,
-  user_id bigint(255) NOT NULL,
+  event_id bigint(64) PRIMARY KEY AUTO_INCREMENT,
+  user_id bigint(64) NOT NULL,
   title varchar(50) NOT NULL,
   image varchar(50) NOT NULL,
   event_date DATETIME NOT NULL,
@@ -53,14 +53,14 @@ CREATE TABLE IF NOT EXISTS `event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `category` (
-    category_id tinyint(255) PRIMARY KEY AUTO_INCREMENT,
+    category_id tinyint(32) PRIMARY KEY AUTO_INCREMENT,
     name varchar(24) NOT NULL,
     slug varchar(24) NOT NULL,
     description varchar(255) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `tag` (
-    tag_id tinyint(255) PRIMARY KEY AUTO_INCREMENT,
+    tag_id tinyint(32) PRIMARY KEY AUTO_INCREMENT,
     name varchar(24) NOT NULL,
     slug varchar(24) NOT NULL,
     description varchar(255) NOT NULL

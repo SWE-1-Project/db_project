@@ -141,7 +141,7 @@ router.post('/submitRegister', (req, res) => {
                 if (err)
                     console.log(err);
                 console.log(results + " was posted to user_information!")
-                db.query("INSERT INTO user (email,password,first_name,last_name) VALUES ((SELECT email FROM user_information WHERE email = '" + email + "'),'" + hash + "','" + firstName + "','" + lastName + "')",
+                db.query("INSERT INTO user (email,password,first_name,last_name) VALUES ('" + email + "','" + hash + "','" + firstName + "','" + lastName + "')",
                 (err, results) => {
                     if (err)
                         console.log(err);
@@ -207,8 +207,20 @@ router.get('/createPost', (req, res) => {
             if (err)
                 console.log(err);
             else if (temp == 'Contributor' || temp == 'Admin') {
-                res.render('createPost', {
-                    title: 'Create a Post'
+                db.query("SELECT name FROM category",
+                (err, categories) => {
+                    if (err)
+                        console.log(err);
+                    db.query("SELECT name FROM tag", 
+                    (err, tags) => {
+                        if (err)
+                            console.log(err);
+                        res.render('createPost', {
+                            categories: categories,
+                            tags: tags,
+                            title: 'Create a Post'
+                        });
+                    });
                 });
             } else {
                 res.render('blog', {
@@ -225,16 +237,28 @@ router.get('/createPost', (req, res) => {
 
 // Route to Submit an Post => from Create Post button
 router.post('/submitPost', (req, res) => {
-    const eventDetails = req.body;
-    db.query('INSERT INTO event SET ?', 
-    eventDetails,
+    const title = req.body.title;
+    const image = req.body.image;
+    const content = req.body.content;
+    const category = req.body.category;
+    const tag = req.body.tag;
+
+    console.log(req.body.tag);
+
+    db.query("INSERT INTO post (user_id,title,image,content,category_id,tag_id) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','"+ content +"',(SELECT category_id FROM category WHERE name='" + category + "'),(SELECT tag_id FROM tag WHERE name='" + tag + "'))",
     (err, results) => {
         if (err)
             console.log(err);
         console.log(results + " was posted!")
     });
-    res.redirect('/blog', {
-        title: 'Blog'
+    db.query("SELECT * FROM post", 
+    (err, results) => {
+        if(err)
+            console.log(err);
+        res.render('blog', {
+            posts: results,
+            title: 'Blog'
+        });
     });
 });
 

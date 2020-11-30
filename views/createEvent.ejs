@@ -2,28 +2,28 @@
 <%- include('partials/header.ejs') %>
 
 <div class="container view intro-2" style="height: 6em;"></div>
-<div id="calendar" class="page container article section-bg">
+<div id="calendar" class="page container article section-bg" style="padding-bottom: 2rem;">
     <div class="section-title">
-        <h2>Create New Event</h2>
+        <h2 class="text-center" style="padding-top: 2rem;">Create New Event</h2>
     </div>
 
     <div class="row">
         <div class="col-8 offset-2">
             <form action="/submitEvent" method="POST">
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-10 offset-1">
                         <div class="form-group">
-                            <label for="titleInput"><b>Title</b></label>
+                            <label class="text-quaternary-color" for="titleInput"><h6>Title</h6></label>
                             <input type='text' name='title' class="form-control" id="titleInput" placeholder="Title*"
                                 required>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-10 offset-1">
                         <div class="form-group">
-                            <label for="contentInput"><b>Content</b></label>
-                            <textarea name="content" id="contentInput" cols="77" rows="10" placeholder=" Content*"
+                            <label class="text-quaternary-color" for="contentInput"><h6>Content</h6></label>
+                            <textarea name="content" id="contentInput" cols="94" rows="10" placeholder=" Content*"
                                 required></textarea>
                         </div>
                     </div>
@@ -39,7 +39,22 @@
                         tinycomments_author: 'Author name'
                     });
                 </script>
-
+                <div class="row">
+                    <div class="col-5 offset-1">
+                        <div class="form-group">
+                            <label class="text-quaternary-color" for="eventDateInput"><h6>Event Date</h6></label>
+                            <input type='date' name='eventDate' class="form-control" id="eventDate" placeholder="Date*"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label class="text-quaternary-color" for="eventTimeInput"><h6>Event Time</h6></label>
+                            <input type='time' name='eventTime' class="form-control" id="eventTime" placeholder="Time*"
+                                required>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-5 offset-1 border border-quaternary-color rounded">
                         <br>
@@ -47,10 +62,13 @@
                             <h6>Categories</h6>
                         </label>
                         <hr>
+                        <% for (c of categories) {%>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" name="category[]" id="newsInput" />
-                            <label class="form-check-label" for="newsInput">News</label>
+                            <input type="radio" class="form-check-input" name="category" id="category" value="<%= c.name%>"/>
+                            <label class="form-check-label" for="category"><%= c.name%></label>
                         </div>
+                        <% } %>
+                        
                     </div>
 
                     <div class="col-5 border border-quaternary-color rounded">
@@ -60,29 +78,29 @@
                         </label>
                         <hr>
                         <div class="form-group">
-                            <label for="mainImageInput">Main Image</label>
-                            <input type='file' name='mainImage' class="form-control" id="mainImageInput" required>
+                            <label class="form-check-label text-quaternary-color" for="imageInput">Main Image</label>
+                            <input type='file' name='image' class="form-control" id="input" required>
                         </div>
                         <hr>
                         <label class="form-check-label text-quaternary-color">
                             <h6>Tags</h6>
                         </label>
                         <hr>
-                        <div class="form-group">
-                            <label for="tagsInput">Include any tags that would relate to this article.
-                                At a minimum include the tags:</label>
-                            <input type='text' name='tags' class="form-control" id="tagsInput" placeholder="#Tags*"
-                                required>
+                        <% for (t of tags) { %>
+                        <div class="form-group form-check"> 
+                            <input type="checkbox" class="form-check-input" id="tag" name="tag" value="<%= t.name%>">
+                            <label class="form-check-label" for="tag"><%= t.name%></label>
                         </div>
+                        <% } %>
                     </div>
                 </div>
                 <div class="row" style="height: 3em;"></div>
                 <div class="row">
                     <div class="col-4 offset-2 text-center">
-                        <button class="btn-learn-more">Submit</button>
+                        <button class="btn btn-outline-primary btn-md btn-rounded btn-navbar waves-effect waves-light border-primary-color text-primary-color hover-border-secondary-color hover-text-secondary-color" type="reset">Reset</button>
                     </div>
                     <div class="col-4 text-center">
-                        <button class="btn-learn-more" type="reset">Reset</button>
+                        <button class="btn text-center btn-outline-primary btn-md btn-rounded btn-navbar waves-effect waves-light border-quaternary-color text-quaternary-color hover-border-tertiary-color hover-text-tertiary-color" type="submit">Submit</button>
                     </div>
                 </div>
             </form>

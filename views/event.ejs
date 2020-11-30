@@ -17,10 +17,10 @@
                <div class="event active">
                   <i class="far fa-bookmark hot"></i>
                   <h4 class="event__point">
-                     <span><%= e.eventTime%></span>
+                     <span><%= e.event_date%></span>
                      <span style="margin-left: 2rem;"><%= e.title%></span>
                   </h4>
-                  <span class="event__duration" style="margin-right: 2rem;">starts in <%= (Math.abs(new Date() - e.eventDate) / 3600000).toFixed(1); %> hours</span>
+                  <span class="event__duration" style="margin-right: 2rem;">starts in <%= (Math.abs(new Date() - e.event_date) / 3600000).toFixed(1); %> hours</span>
                   <p class="event__description">
                      <%= e.content %>
                   </p>

@@ -9,25 +9,29 @@
     <div class="blog-list px-3 py-5 p-md-5">
         <div class="container">
             <% for (p of posts) { 
-                var diff = Math.abs(new Date() - p.date);
-                console.log(Math.abs(new Date() - p.date));%>
+                var diff = Math.abs(date - p.created_at);
+                console.log(date);
+                console.log(p.created_at);
+                console.log(Math.abs(date - p.created_at));%>
             <div class="item mb-5">
                 <div class="media">
-                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="/assets/img/blog/<%= p.mainImage %>" alt="<%= p.title %>">
+                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="/assets/img/blog/<%= p.image %>" alt="<%= p.title %>">
                     <div class="media-body">
                         <h3 class="title mb-1"><a href="#"><%= p.title %></a></h3>
                         <div class="meta mb-1">
                        
-                            <span class="time"><%= p.author %></span>
+                            <span class="time"><%= p.first_name %></span>
+                            <span class="time"><%= p.last_name %></span>
                     
-                            <span class="date">Published <%diff%> ago</span>
-                            <span class="comment"><a href="#">4 comments</a></span></div>
+                            <span class="date">Published <%- diff%> ago</span>
+                            <span class="comment"><a href="#">0 comments</a></span></div>
                         <div class="intro"><%= p.content%></div>
                         <a class="more-link" href="#">Read more &rarr;</a>
                         <div class="meta mb-1">
                             <span class="time">5 min read</span>
-                            <span class="date"><%= p.titleCategory%></span>
-                            <span class="time"><%= p.titleTag%></span>
+                            <span class="date"><%= p.created_at%></span>
+                            <span class="time"><%= p.slug%></span>
+                            <span class="time"><%= p.name%></span>
                         </div>
                     </div>
                     <!--//media-body-->

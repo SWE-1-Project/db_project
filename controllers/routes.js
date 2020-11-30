@@ -28,18 +28,20 @@ router.get('/about', (req, res) => {
 
 // Event Page Route
 router.get('/event', (req, res) => {
-    /*
-    db.query('SELECT * FROM event WHERE event_date >= CURDATE() ORDER BY event_date ASC', (err, results) => {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    db.query('SELECT u.first_name, u.last_name, e.title, e.image, e.event_date, e.content, e.created_at, c.name, t.name FROM event e INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+    (err, results) => {
         if (err)
             console.log(err);
-            */
         res.render('event', 
         {
-            //events: results,
-            //date: date,
+            events: results,
+            date: date,
+            dateFormat: dateFormat,
             title: 'Events'
         });
-   // })
+    })
 });
 
 // Adopt Page Route
@@ -65,11 +67,16 @@ router.get('/donate', (req, res) => {
 
 // Blog Page Route
 router.get('/blog', (req, res) => {
-    db.query('SELECT * FROM blog ORDER BY created_at DESC', (err, results) => {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+    (err, results) => {
+        console.log(results);
         if (err)
             console.log(err);
         res.render('blog', {
             posts: results,
+            date: date,
             title: 'Blog'
         });
     })      
@@ -157,7 +164,9 @@ router.post('/submitRegister', (req, res) => {
 
 // Create Event Page Route => includes RBAC controls
 router.get('/createEvent', (req, res) => {
-    if (sess.loggedin == true) {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    if (sess != null) {
         db.query('SELECT role FROM user WHERE email = ?', 
         [sess.email], 
         (err, results) => {
@@ -165,41 +174,82 @@ router.get('/createEvent', (req, res) => {
             if (err)
                 console.log(err);
             else if (temp == 'Contributor' || temp == 'Admin') {
-                res.render('createEvent', {
-                    title: 'Create an Event'
+                db.query("SELECT name FROM category",
+                (err, categories) => {
+                    if (err)
+                        console.log(err);
+                    db.query("SELECT name FROM tag", 
+                    (err, tags) => {
+                        if (err)
+                            console.log(err);
+                        res.render('createEvent', {
+                            categories: categories,
+                            tags: tags,
+                            title: 'Create an Event'
+                        });
+                    });
                 });
             } else {
-                res.render('event', {
-                    title: 'Events'
+                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                (err, results) => {
+                    console.log(results);
+                    if (err)
+                        console.log(err);
+                    res.render('event', {
+                        events: results,
+                        title: 'Events'
+                    });
                 });
             }
         });
-	} else {
-        res.render('event', {
-            title: 'Events'
+    } else {
+        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        (err, results) => {
+            console.log(results);
+            if (err)
+                console.log(err);
+            res.render('event', {
+                events: results,
+                title: 'Events'
+            });
         });
     }
 });
 
 // Route to Submit an Event => from Create Event button
 router.post('/submitEvent', (req, res) => {
-    // this is a test to see if it will fill the entire tuple or just one
-    const eventDetails = req.body;
-    db.query('INSERT INTO event SET ?', 
-    eventDetails,
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    const title = req.body.title;
+    const image = req.body.image;
+    const eventDate = req.body.eventDate;
+    const eventTime = req.body.eventTime;
+    const content = req.body.content;
+    const category = req.body.category;
+    const tag = req.body.tag;   
+    db.query("INSERT INTO event (user_id,title,image,event_date,content,category_id,tag_id,created_at) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','" + eventDate + " " + eventTime + "','"+ content +"',(SELECT category_id FROM category WHERE name='" + category + "'),(SELECT tag_id FROM tag WHERE name='" + tag + "'),'"+ date +"')", 
     (err, results) => {
         if (err)
             console.log(err);
         console.log(results + " was posted!")
     });
-    res.redirect('/event', {
-        title: 'Events'
+    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+    (err, results) => {
+        console.log(results);
+        if (err)
+            console.log(err);
+        res.render('event', {
+            events: results,
+            title: 'Events'
+        });
     });
 });
 
 // Create Post Page Route => includes RBAC controls
 router.get('/createPost', (req, res) => {
-    if (sess.loggedin == true) {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    if (sess != null) {
         db.query('SELECT role FROM user WHERE email = ?', 
         [sess.email], 
         (err, results) => {
@@ -223,20 +273,36 @@ router.get('/createPost', (req, res) => {
                     });
                 });
             } else {
-                res.render('blog', {
-                    title: 'Blog'
+                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                (err, results) => {
+                    if (err)
+                        console.log(err);
+                    res.render('blog', {
+                        posts: results,
+                        date: date,
+                        title: 'Blog'
+                    });
                 });
             }
         });
 	} else {
-        res.render('blog', {
-            title: 'Blog'
+        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        (err, results) => {
+            if (err)
+                console.log(err);
+            res.render('blog', {
+                posts: results,
+                date: date,
+                title: 'Blog'
+            });
         });
     }
 });
 
 // Route to Submit an Post => from Create Post button
 router.post('/submitPost', (req, res) => {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
     const title = req.body.title;
     const image = req.body.image;
     const content = req.body.content;
@@ -245,18 +311,19 @@ router.post('/submitPost', (req, res) => {
 
     console.log(req.body.tag);
 
-    db.query("INSERT INTO post (user_id,title,image,content,category_id,tag_id) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','"+ content +"',(SELECT category_id FROM category WHERE name='" + category + "'),(SELECT tag_id FROM tag WHERE name='" + tag + "'))",
+    db.query("INSERT INTO post (user_id,title,image,content,category_id,tag_id,created_at) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','"+ content +"',(SELECT category_id FROM category WHERE name='" + category + "'),(SELECT tag_id FROM tag WHERE name='" + tag + "'),'"+ date +"')",
     (err, results) => {
         if (err)
             console.log(err);
         console.log(results + " was posted!")
     });
-    db.query("SELECT * FROM post", 
+    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
     (err, results) => {
         if(err)
             console.log(err);
         res.render('blog', {
             posts: results,
+            date: date,
             title: 'Blog'
         });
     });
@@ -264,7 +331,9 @@ router.post('/submitPost', (req, res) => {
 
 // Create Category Page Route => includes RBAC controls
 router.get('/createCategory', (req, res) => {
-    if (sess.loggedin == true) {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    if (sess != null) {
         db.query('SELECT role FROM user WHERE email = ?', 
         [sess.email], 
         (err, results) => {
@@ -276,14 +345,28 @@ router.get('/createCategory', (req, res) => {
                     title: 'Create a Category'
                 });
             } else {
-                res.render('blog', {
-                    title: 'Blog'
+                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                (err, results) => {
+                    if (err)
+                        console.log(err);
+                    res.render('blog', {
+                        posts: results,
+                        date: date,
+                        title: 'Blog'
+                    });
                 });
             }
         });
 	} else {
-        res.render('blog', {
-            title: 'Blog'
+        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        (err, results) => {
+            if (err)
+                console.log(err);
+            res.render('blog', {
+                posts: results,
+                date: date,
+                title: 'Blog'
+            });
         });
     }
 });
@@ -306,7 +389,9 @@ router.post('/submitCategory', (req, res) => {
 
 // Create Tag Page Route => includes RBAC controls
 router.get('/createTag', (req, res) => {
-    if (sess.loggedin == true) {
+    const dateFormat = require('dateformat');
+    const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
+    if (sess != null) {
         db.query('SELECT role FROM user WHERE email = ?', 
         [sess.email], 
         (err, results) => {
@@ -318,14 +403,28 @@ router.get('/createTag', (req, res) => {
                     title: 'Create a Tag'
                 });
             } else {
-                res.render('blog', {
-                    title: 'Blog'
+                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                (err, results) => {
+                    if (err)
+                        console.log(err);
+                    res.render('blog', {
+                        posts: results,
+                        date: date,
+                        title: 'Blog'
+                    });
                 });
             }
         });
 	} else {
-        res.render('blog', {
-            title: 'Blog'
+        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        (err, results) => {
+            if (err)
+                console.log(err);
+            res.render('blog', {
+                posts: results,
+                date: date,
+                title: 'Blog'
+            });
         });
     }
 });

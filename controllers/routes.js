@@ -30,7 +30,7 @@ router.get('/about', (req, res) => {
 router.get('/event', (req, res) => {
     const dateFormat = require('dateformat');
     const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-    db.query('SELECT u.first_name, u.last_name, e.title, e.image, e.event_date, e.content, e.created_at, c.name, t.name FROM event e INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+    db.query('SELECT u.first_name, u.last_name, e.title, e.image, e.event_date, e.event_time, e.content, e.created_at, c.category_title, t.tag_title FROM event e INNER JOIN category c on c.category_id = e.category_id INNER JOIN tag t on t.tag_id = e.tag_id INNER JOIN user u on u.user_id = e.user_id ORDER BY e.created_at DESC', 
     (err, results) => {
         if (err)
             console.log(err);
@@ -38,7 +38,6 @@ router.get('/event', (req, res) => {
         {
             events: results,
             date: date,
-            dateFormat: dateFormat,
             title: 'Events'
         });
     })
@@ -69,7 +68,7 @@ router.get('/donate', (req, res) => {
 router.get('/blog', (req, res) => {
     const dateFormat = require('dateformat');
     const date = dateFormat(new Date(), "yyyy-mm-dd HH:MM:ss");
-    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
     (err, results) => {
         console.log(results);
         if (err)
@@ -174,11 +173,11 @@ router.get('/createEvent', (req, res) => {
             if (err)
                 console.log(err);
             else if (temp == 'Contributor' || temp == 'Admin') {
-                db.query("SELECT name FROM category",
+                db.query("SELECT category_title FROM category",
                 (err, categories) => {
                     if (err)
                         console.log(err);
-                    db.query("SELECT name FROM tag", 
+                    db.query("SELECT tag_title FROM tag", 
                     (err, tags) => {
                         if (err)
                             console.log(err);
@@ -190,7 +189,7 @@ router.get('/createEvent', (req, res) => {
                     });
                 });
             } else {
-                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                db.query('SELECT u.first_name, u.last_name, e.title, e.image, e.event_date, e.event_time, e.content, e.created_at, c.category_title, t.tag_title FROM event e INNER JOIN category c on c.category_id = e.category_id INNER JOIN tag t on t.tag_id = e.tag_id INNER JOIN user u on u.user_id = e.user_id ORDER BY e.created_at DESC', 
                 (err, results) => {
                     console.log(results);
                     if (err)
@@ -203,7 +202,7 @@ router.get('/createEvent', (req, res) => {
             }
         });
     } else {
-        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        db.query('SELECT u.first_name, u.last_name, e.title, e.image, e.event_date, e.event_time, e.content, e.created_at, c.category_title, t.tag_title FROM event e INNER JOIN category c on c.category_id = e.category_id INNER JOIN tag t on t.tag_id = e.tag_id INNER JOIN user u on u.user_id = e.user_id ORDER BY e.created_at DESC', 
         (err, results) => {
             console.log(results);
             if (err)
@@ -227,13 +226,13 @@ router.post('/submitEvent', (req, res) => {
     const content = req.body.content;
     const category = req.body.category;
     const tag = req.body.tag;   
-    db.query("INSERT INTO event (user_id,title,image,event_date,content,category_id,tag_id,created_at) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','" + eventDate + " " + eventTime + "','"+ content +"',(SELECT category_id FROM category WHERE name='" + category + "'),(SELECT tag_id FROM tag WHERE name='" + tag + "'),'"+ date +"')", 
+    db.query("INSERT INTO event (user_id,title,image,event_date,event_time,content,category_id,tag_id,created_at) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','" + eventDate + "','" + eventTime + "','"+ content +"',(SELECT category_id FROM category WHERE category_title='" + category + "'),(SELECT tag_id FROM tag WHERE tag_title='" + tag + "'),'"+ date +"')", 
     (err, results) => {
         if (err)
             console.log(err);
         console.log(results + " was posted!")
     });
-    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+    db.query('SELECT u.first_name, u.last_name, e.title, e.image, e.event_date, e.event_time, e.content, e.created_at, c.category_title, t.tag_title FROM event e INNER JOIN category c on c.category_id = e.category_id INNER JOIN tag t on t.tag_id = e.tag_id INNER JOIN user u on u.user_id = e.user_id ORDER BY e.created_at DESC', 
     (err, results) => {
         console.log(results);
         if (err)
@@ -257,11 +256,11 @@ router.get('/createPost', (req, res) => {
             if (err)
                 console.log(err);
             else if (temp == 'Contributor' || temp == 'Admin') {
-                db.query("SELECT name FROM category",
+                db.query("SELECT category_title FROM category",
                 (err, categories) => {
                     if (err)
                         console.log(err);
-                    db.query("SELECT name FROM tag", 
+                    db.query("SELECT tag_title FROM tag", 
                     (err, tags) => {
                         if (err)
                             console.log(err);
@@ -273,7 +272,7 @@ router.get('/createPost', (req, res) => {
                     });
                 });
             } else {
-                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
                 (err, results) => {
                     if (err)
                         console.log(err);
@@ -286,7 +285,7 @@ router.get('/createPost', (req, res) => {
             }
         });
 	} else {
-        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
         (err, results) => {
             if (err)
                 console.log(err);
@@ -311,13 +310,13 @@ router.post('/submitPost', (req, res) => {
 
     console.log(req.body.tag);
 
-    db.query("INSERT INTO post (user_id,title,image,content,category_id,tag_id,created_at) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','"+ content +"',(SELECT category_id FROM category WHERE name='" + category + "'),(SELECT tag_id FROM tag WHERE name='" + tag + "'),'"+ date +"')",
+    db.query("INSERT INTO post (user_id,title,image,content,category_id,tag_id,created_at) VALUES ((SELECT user_id FROM user WHERE email='"+ sess.email +"'),'"+ title +"','"+ image +"','"+ content +"',(SELECT category_id FROM category WHERE category_title='" + category + "'),(SELECT tag_id FROM tag WHERE tag_title='" + tag + "'),'"+ date +"')",
     (err, results) => {
         if (err)
             console.log(err);
         console.log(results + " was posted!")
     });
-    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+    db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
     (err, results) => {
         if(err)
             console.log(err);

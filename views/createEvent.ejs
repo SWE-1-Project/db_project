@@ -64,8 +64,8 @@
                         <hr>
                         <% for (c of categories) {%>
                         <div class="form-group form-check">
-                            <input type="radio" class="form-check-input" name="category" id="category" value="<%= c.name%>"/>
-                            <label class="form-check-label" for="category"><%= c.name%></label>
+                            <input type="radio" class="form-check-input" name="category" id="category" value="<%= c.category_title%>"/>
+                            <label class="form-check-label" for="category"><%= c.category_title%></label>
                         </div>
                         <% } %>
                         
@@ -88,8 +88,8 @@
                         <hr>
                         <% for (t of tags) { %>
                         <div class="form-group form-check"> 
-                            <input type="checkbox" class="form-check-input" id="tag" name="tag" value="<%= t.name%>">
-                            <label class="form-check-label" for="tag"><%= t.name%></label>
+                            <input type="checkbox" class="form-check-input" id="tag" name="tag" value="<%= t.tag_title%>">
+                            <label class="form-check-label" for="tag"><%= t.tag_title%></label>
                         </div>
                         <% } %>
                     </div>

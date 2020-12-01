@@ -20,8 +20,10 @@
                      <span><%= e.event_date%></span>
                      <span style="margin-left: 2rem;"><%= e.title%></span>
                   </h4>
-                  <span class="event__duration" style="margin-right: 2rem;">starts in <%= (Math.abs(new Date() - e.event_date) / 3600000).toFixed(1); %> hours</span>
-                  <p class="event__description">
+                  <!--
+                  <span class="event__duration" style="margin-right: 2rem;">starts in  hours</span>
+                 --> 
+                 <p class="event__description">
                      <%= e.content %>
                   </p>
                </div>

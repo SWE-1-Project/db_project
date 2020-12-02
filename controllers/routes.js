@@ -344,7 +344,7 @@ router.get('/createCategory', (req, res) => {
                     title: 'Create a Category'
                 });
             } else {
-                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
                 (err, results) => {
                     if (err)
                         console.log(err);
@@ -357,7 +357,7 @@ router.get('/createCategory', (req, res) => {
             }
         });
 	} else {
-        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
         (err, results) => {
             if (err)
                 console.log(err);
@@ -375,7 +375,7 @@ router.post('/submitCategory', (req, res) => {
     const name = req.params.name;
     const slug = req.params.slug;
     const description = req.params.description;
-    db.query('INSERT INTO category (name, slug, description) VALUES ('+ name + ',' + slug + ',' + description + ')',
+    db.query("INSERT INTO category (category_title, slug, description) VALUES ('" + name + "','" + slug + "','" + description + "')",
     (err, results) => {
         if (err)
             console.log(err);
@@ -402,7 +402,7 @@ router.get('/createTag', (req, res) => {
                     title: 'Create a Tag'
                 });
             } else {
-                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+                db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
                 (err, results) => {
                     if (err)
                         console.log(err);
@@ -415,7 +415,7 @@ router.get('/createTag', (req, res) => {
             }
         });
 	} else {
-        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.name, t.name FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
+        db.query('SELECT u.first_name, u.last_name, p.title, p.image, p.content, p.created_at, c.category_title, t.tag_title FROM post p INNER JOIN category c on c.category_id = p.category_id INNER JOIN tag t on t.tag_id = p.tag_id INNER JOIN user u on u.user_id = p.user_id ORDER BY p.created_at DESC', 
         (err, results) => {
             if (err)
                 console.log(err);
@@ -433,7 +433,7 @@ router.post('/submitTag', (req, res) => {
     const name = req.params.name;
     const slug = req.params.slug;
     const description = req.params.description;
-    db.query('INSERT INTO tag (name, slug, description) VALUES ('+ name + ',' + slug + ',' + description + ')',
+    db.query('INSERT INTO tag (tag_title, slug, description) VALUES ('+ name + ',' + slug + ',' + description + ')',
     (err, results) => {
         if (err)
             console.log(err);

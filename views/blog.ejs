@@ -4,25 +4,25 @@
 <div id="blog" class="page container article section-bg" style="padding-bottom: 2rem;">
     <div class="section-title">
         <h1 class="text-center" style="margin: 7rem 0 2rem 0; padding-top: 2rem;">Blog</h1>
-        </div>
     </div>
     <div class="blog-list px-3 py-5 p-md-5">
-        <div class="container">
+        <div class="container"></div>
             <% for (p of posts) { 
                 var diff = Math.abs(date - p.created_at);
                 console.log(date);
                 console.log(p.created_at);
                 console.log(Math.abs(date - p.created_at));%>
-            <div class="item mb-5">
+            <div class="item mb-5 white">
                 <div class="media">
-                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="/assets/img/blog/<%= p.image %>" alt="<%= p.title %>">
+                    <img class="mr-3 img-fluid post-thumb d-none d-md-flex m-2" src="/assets/img/blog/<%= p.image %>"
+                        alt="<%= p.title %>">
                     <div class="media-body">
-                        <h3 class="title mb-1"><a href="#"><%= p.title %></a></h3>
+                        <h3 class="title m-1"><a href="#"><%= p.title %></a></h3>
                         <div class="meta mb-1">
-                       
+
                             <span class="time"><%= p.first_name %></span>
                             <span class="time"><%= p.last_name %></span>
-                    
+
                             <span class="date">Published <%- diff%> ago</span>
                             <span class="comment"><a href="#">0 comments</a></span></div>
                         <div class="intro"><%= p.content%></div>

@@ -15,22 +15,30 @@
       <li class="nav-list-item"><a href="donate">Donate</a></li>
       <li class="nav-list-item"><a href="blog">Blog</a></li>
       <li class="nav-list-item"><a href="contact">Contact</a></li>
+      <% if (sess != null) { %>
       <li class="nav-list-item">
-        <a class="btn btn-light border-primary-color" type="button" data-toggle="modal" data-target="#exampleModal">
+        <a class="btn btn-light border-primary-color" type="button" data-toggle="modal" data-target="#loginModal">
+          Sign Out
+        </a>
+      </li>
+      <% } else { %>
+      <li class="nav-list-item">
+        <a class="btn btn-light border-primary-color" type="button" data-toggle="modal" data-target="#loginModal">
           Sign In
         </a>
       </li>
       <li class="nav-list-item"><a class="btn btn-dark" href="register">Register</a></li>
+      <% } %>
     </ul>
   </div>
 </nav>
 
 <!-- Sign In Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+        <h5 class="modal-title" id="loginModalLabel">Sign In</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

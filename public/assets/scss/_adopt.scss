@@ -31,8 +31,8 @@
         transition:all .5s ease-out 0s;
     } 
     .pet-full-view {
-        color:#505050;
-        background-color:#fff;
+        color:$blackColor;
+        background-color:$whiteColor;
         font-size:16px;
         height:45px;
         width:45px;
@@ -46,7 +46,7 @@
         transition:all .3s ease 0s;
     }
     .pet-full-view:hover {
-        color:#c0392b;
+        color:$tertiaryColor;
     }
     .pet-content {
         padding:12px 12px 0;
@@ -60,7 +60,7 @@
     }
     .rating li { 
         font-size:12px;
-        color:#ffd200;
+        color:$secondaryColor;
         transition:all .3s ease 0s;
     }
     .rating li.disable { 
@@ -77,10 +77,10 @@
         color:rgba(0,0,0,.5);
     }
     .title a:hover { 
-        color:#c0392b;
+        color:$tertiaryColor;
     }
     .price { 
-        color:#000;
+        color:$blackColor;
         font-size:17px;
         margin:0;
         display:block;
@@ -88,7 +88,7 @@
     }
     .add-to-cart { 
         display:block;
-        color:#c0392b;
+        color:$tertiaryColor;
         font-weight:600;
         font-size:14px;
         opacity:0;
@@ -143,11 +143,11 @@
   content: "/";
   vertical-align: middle;
   margin: 0 5px;
-  color: #7a7a7a;
+  color: $quinaryColor;
 }
 .action-wishlist:hover,
 .action-wishlist:focus{
-  color:#fff;
+  color:$whiteColor;
 }
 .add-to-cart.action-wishlist {
   width: 50px;
@@ -175,7 +175,7 @@
 }
 .action-wishlist:hover,
 .action-wishlist:focus{
-  color:#fff;
+  color:$whiteColor;
 }
 .add-to-cart.action-wishlist i {
   margin-right: 0px;
@@ -191,10 +191,10 @@
 .pet-thumbnail .owl-nav  {display: none;}
 .breadcrumb-area {
     padding: 30px 0;
-    background-color: #f3f3f3;
+    background-color: $quinaryColor;
 }
 .breadmome-name {
-    color: #ff6a00;
+    color: $tertiaryColor;
     font-size: 24px;
     font-weight: 500;
     text-transform: capitalize;
@@ -205,16 +205,16 @@
     list-style: none;
     position: relative;
     font-size: 14px;
-    color: #333;
+    color: $blackColor;
 }
 .breadcrumb-content > ul > li.active{
-    color: #ff6a00;
+    color: $quinaryColor;
 }
 .breadcrumb-content > ul > li:after {
     content: "/";
     vertical-align: middle;
     margin: 0 5px;
-    color: #7a7a7a;
+    color: $quinaryColor;
 }
 .breadcrumb-content > ul > li:last-child:after{
     display: none;
@@ -224,7 +224,7 @@
     font-size: 22px;
     text-transform: capitalize;
     font-weight: 900;
-    color: #444;
+    color: $secondaryColor;
     line-height: 24px;
     margin-bottom: 15px;
 }
@@ -251,24 +251,24 @@
     font-weight: 900;
     line-height: 30px;
     display: inline-block;
-    color: #008bff;
+    color: $quaternaryColor;
 }
 .pet-info {
-    color: #333;
+    color: $blackColor;
     font-size: 14px;
     font-weight: 400;
 }
 .pet-info p {
     line-height: 30px;
     font-size: 14px;
-    color: #333;
+    color: $blackColor;
     margin-top: 30px;
 }
 .pet-add-to-cart span.control-label {
     display: block;
     margin-bottom: 10px;
     text-transform: capitalize;
-    color: #232323;
+    color: $blackColor;
     font-size: 14px;
 }
 .pet-add-to-cart {
@@ -278,9 +278,9 @@
     width: 100%;
 }
 .cart-plus-minus-box {
-    border: 1px solid #e1e1e1;
+    border: 1px solid $whiteColor;
     border-radius: 0;
-    color: #3c3c3c;
+    color: $blackColor;
     height: 49px;
     text-align: center;
     width: 50px;
@@ -296,10 +296,10 @@
     padding-right: 25px;
 }
 .add-to-cart {
-    background: #008bff;
+    background: $quaternaryColor;
     border: 0;
-    border-bottom: 3px solid #0680e5;
-    color: #fff;
+    border-bottom: 3px solid $quaternaryColor;
+    color: $whiteColor;
     box-shadow: none;
     padding: 0 30px;
     border-radius: 3px;
@@ -309,8 +309,10 @@
     text-transform: capitalize;
     height: 50px;
     line-height: 50px;
+    width:inherit;
 }
 .add-to-cart:hover {
-    background: #ff6a00;
-    border-color: #e96405;
+    background: $tertiaryColor;
+    border-color: $tertiaryColor;
+    color: $quaternaryColor;
 }

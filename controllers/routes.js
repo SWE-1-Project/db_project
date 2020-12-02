@@ -15,6 +15,7 @@ var sess;
 // Homepage Route
 router.get('/', (req, res) => {  
     res.render('index', {
+        sess: sess,
         title: 'Homepage'
     });
 });
@@ -22,6 +23,7 @@ router.get('/', (req, res) => {
 // About Page Route
 router.get('/about', (req, res) => {
     res.render('about', {
+        sess: sess,
         title: 'About Us'
     });
 });
@@ -36,6 +38,7 @@ router.get('/event', (req, res) => {
             console.log(err);
         res.render('event', 
         {
+            sess: sess,
             events: results,
             date: date,
             title: 'Events'
@@ -46,6 +49,7 @@ router.get('/event', (req, res) => {
 // Adopt Page Route
 router.get('/adopt', (req, res) => {
     res.render('adopt', {
+        sess: sess,
         title: 'Adoptions'
     });
 });
@@ -53,6 +57,7 @@ router.get('/adopt', (req, res) => {
 // Volunteer Page Route
 router.get('/volunteer', (req, res) => {
     res.render('volunteer', {
+        sess: sess,
         title: 'Volunteer'
     });
 });
@@ -60,6 +65,7 @@ router.get('/volunteer', (req, res) => {
 // Donate Page Route
 router.get('/donate', (req, res) => {
     res.render('donate', {
+        sess: sess,
         title: 'Donate'
     });
 });
@@ -74,6 +80,7 @@ router.get('/blog', (req, res) => {
         if (err)
             console.log(err);
         res.render('blog', {
+            sess: sess,
             posts: results,
             date: date,
             title: 'Blog'
@@ -84,6 +91,7 @@ router.get('/blog', (req, res) => {
 // Contact Page Route
 router.get('/contact', (req, res) => {
     res.render('contact', {
+        sess: sess,
         title: 'Contact Us'
     });
 });
@@ -113,11 +121,13 @@ router.post('/checkSignin', (req, res) => {
             });
         });
         res.render('index', {
+            sess: sess,
             title: 'Homepage'  
           });
     } else {
         console.log("Error " + email + ", " + password);
         res.render('register', {
+            sess: sess,
             title: 'Register',
             message: 'Please register for an account.'
         });
@@ -127,6 +137,7 @@ router.post('/checkSignin', (req, res) => {
 // Registration Page Route
 router.get('/register', (req, res) => {
     res.render('register', {
+        sess: sess,
         title: 'Register'
     });
 });
@@ -160,6 +171,7 @@ router.post('/submitRegister', (req, res) => {
                         console.log(err);
                     console.log(results + " was posted to user!")
                     res.render('index', {
+                        sess: sess,
                         title: 'Homepage'
                     });
                 });
@@ -189,6 +201,7 @@ router.get('/createEvent', (req, res) => {
                         if (err)
                             console.log(err);
                         res.render('createEvent', {
+                            sess: sess,
                             categories: categories,
                             tags: tags,
                             title: 'Create an Event'
@@ -202,6 +215,7 @@ router.get('/createEvent', (req, res) => {
                     if (err)
                         console.log(err);
                     res.render('event', {
+                        sess: sess,
                         events: results,
                         title: 'Events'
                     });
@@ -215,6 +229,7 @@ router.get('/createEvent', (req, res) => {
             if (err)
                 console.log(err);
             res.render('event', {
+                sess: sess,
                 events: results,
                 title: 'Events'
             });
@@ -245,6 +260,7 @@ router.post('/submitEvent', (req, res) => {
         if (err)
             console.log(err);
         res.render('event', {
+            sess: sess,
             events: results,
             title: 'Events'
         });
@@ -272,6 +288,7 @@ router.get('/createPost', (req, res) => {
                         if (err)
                             console.log(err);
                         res.render('createPost', {
+                            sess: sess,
                             categories: categories,
                             tags: tags,
                             title: 'Create a Post'
@@ -284,6 +301,7 @@ router.get('/createPost', (req, res) => {
                     if (err)
                         console.log(err);
                     res.render('blog', {
+                        sess: sess,
                         posts: results,
                         date: date,
                         title: 'Blog'
@@ -297,6 +315,7 @@ router.get('/createPost', (req, res) => {
             if (err)
                 console.log(err);
             res.render('blog', {
+                sess: sess,
                 posts: results,
                 date: date,
                 title: 'Blog'
@@ -328,6 +347,7 @@ router.post('/submitPost', (req, res) => {
         if(err)
             console.log(err);
         res.render('blog', {
+            sess: sess,
             posts: results,
             date: date,
             title: 'Blog'
@@ -356,6 +376,7 @@ router.get('/createCategory', (req, res) => {
                     if (err)
                         console.log(err);
                     res.render('blog', {
+                        sess: sess,
                         posts: results,
                         date: date,
                         title: 'Blog'
@@ -369,6 +390,7 @@ router.get('/createCategory', (req, res) => {
             if (err)
                 console.log(err);
             res.render('blog', {
+                sess: sess,
                 posts: results,
                 date: date,
                 title: 'Blog'
@@ -414,6 +436,7 @@ router.get('/createTag', (req, res) => {
                     if (err)
                         console.log(err);
                     res.render('blog', {
+                        sess: sess,
                         posts: results,
                         date: date,
                         title: 'Blog'
@@ -427,6 +450,7 @@ router.get('/createTag', (req, res) => {
             if (err)
                 console.log(err);
             res.render('blog', {
+                sess: sess,
                 posts: results,
                 date: date,
                 title: 'Blog'
@@ -447,6 +471,7 @@ router.post('/submitTag', (req, res) => {
         console.log(results + " was added to tag!");
     });
     res.redirect('/createTag', {
+        sess: sess,
         title: 'Create a Tag'
     });
 });

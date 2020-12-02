@@ -1,11 +1,9 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-6 offset-3">
-            <h1 class="text-center" style="margin: 7rem 0 2rem 0;">Adoption</h1>
-        </div>
+<div id="about" class="page container article section-bg" style="padding-bottom: 2rem;">
+    <div class="section-title">
+        <h1 class="text-center" style="margin: 7rem 0 2rem 0; padding-top: 2rem;">Adoption</h1>
     </div>
     <div class="row">
         <%  var pets = body;
@@ -35,151 +33,199 @@
         <% }) %>
     </div>
 
-
     <!-- Modal -->
-    <div class="modal fade" id="petModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="container">
+    <div class="modal fade" id="petModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+        aria-hidden="true"></div>
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="container">
                 <div class="modal-body">
-                    
+
                     <div id="shopify-section-pet-template" class="shopify-section">
                         <div class="single-pet-area mt-80 mb-80">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-5">
                                         <div class="pet-details-large" id="petPhoto">
-                                            <img id="petPhotoImg" class="pet-zoom" data-image-id="" alt="12. Aliexpress dropshipping by oberlo" data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552" src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552">
-                  
+                                            <img id="petPhotoImg" class="pet-zoom" data-image-id=""
+                                                alt="12. Aliexpress dropshipping by oberlo"
+                                                data-zoom-image=""> <!--Photo Here-->
+
                                         </div>
                                         <div id="petThumbs" class="pet-thumbnail owl-carousel">
-                                            <a class="pet-single__thumbnail active" href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552" data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552" data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552" data-image-id="6995357106246">
-                                            <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_compact.jpg?v=1544416552" alt="12. Aliexpress dropshipping by oberlo"></a>
-                  
-                                            <a class="pet-single__thumbnail " href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_1024x1024.jpg?v=1544416552" 
-                                            data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_1024x1024.jpg?v=1544416552" data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_1024x1024.jpg?v=1544416552" data-image-id="6995358023750">
-                                            <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_compact.jpg?v=1544416552" alt="12. Aliexpress dropshipping by oberlo"></a>
-                  
-                                            <a class="pet-single__thumbnail " href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_1024x1024.jpg?v=1544416552" 
-                                            data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_1024x1024.jpg?v=1544416552" data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_1024x1024.jpg?v=1544416552" data-image-id="6995357302854">
-                                            <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_compact.jpg?v=1544416552" alt="12. Aliexpress dropshipping by oberlo"></a>
-                  
-                                            <a class="pet-single__thumbnail " href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_1024x1024.jpg?v=1544416552" 
-                                            data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_1024x1024.jpg?v=1544416552" data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_1024x1024.jpg?v=1544416552" data-image-id="6995357532230">
-                                            <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_compact.jpg?v=1544416552" alt="12. Aliexpress dropshipping by oberlo"></a>
-                  
-                                            <a class="pet-single__thumbnail " href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_1024x1024.jpg?v=1544416552" 
-                                            data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_1024x1024.jpg?v=1544416552" data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_1024x1024.jpg?v=1544416552" data-image-id="6995357728838">
-                                            <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_compact.jpg?v=1544416552" alt="12. Aliexpress dropshipping by oberlo"></a>
-                  
+                                            <a class="pet-single__thumbnail active"
+                                                href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552"
+                                                data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552"
+                                                data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_1024x1024.jpg?v=1544416552"
+                                                data-image-id="6995357106246">
+                                                <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/36_compact.jpg?v=1544416552"
+                                                    alt="12. Aliexpress dropshipping by oberlo"></a>
+
+                                            <a class="pet-single__thumbnail "
+                                                href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_1024x1024.jpg?v=1544416552"
+                                                data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_1024x1024.jpg?v=1544416552"
+                                                data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_1024x1024.jpg?v=1544416552"
+                                                data-image-id="6995358023750">
+                                                <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/40_compact.jpg?v=1544416552"
+                                                    alt="12. Aliexpress dropshipping by oberlo"></a>
+
+                                            <a class="pet-single__thumbnail "
+                                                href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_1024x1024.jpg?v=1544416552"
+                                                data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_1024x1024.jpg?v=1544416552"
+                                                data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_1024x1024.jpg?v=1544416552"
+                                                data-image-id="6995357302854">
+                                                <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/37_compact.jpg?v=1544416552"
+                                                    alt="12. Aliexpress dropshipping by oberlo"></a>
+
+                                            <a class="pet-single__thumbnail "
+                                                href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_1024x1024.jpg?v=1544416552"
+                                                data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_1024x1024.jpg?v=1544416552"
+                                                data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_1024x1024.jpg?v=1544416552"
+                                                data-image-id="6995357532230">
+                                                <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/38_compact.jpg?v=1544416552"
+                                                    alt="12. Aliexpress dropshipping by oberlo"></a>
+
+                                            <a class="pet-single__thumbnail "
+                                                href="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_1024x1024.jpg?v=1544416552"
+                                                data-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_1024x1024.jpg?v=1544416552"
+                                                data-zoom-image="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_1024x1024.jpg?v=1544416552"
+                                                data-image-id="6995357728838">
+                                                <img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/pets/39_compact.jpg?v=1544416552"
+                                                    alt="12. Aliexpress dropshipping by oberlo"></a>
+
                                         </div>
                                     </div>
                                     <div class="col-md-7">
                                         <div class="single-pet-content">
-                                            <form method="post" id="AddToCartForm" accept-charset="UTF-8" class="shopify-pet-form" enctype="multipart/form-data">
-                                                <input type="hidden" name="form_type" value="pet" /><input type="hidden" name="utf8" value="✓" />
+                                            <form method="post" id="AddToCartForm" accept-charset="UTF-8"
+                                                class="shopify-pet-form" enctype="multipart/form-data">
+                                                <input type="hidden" name="form_type" value="pet" /><input type="hidden"
+                                                    name="utf8" value="✓" />
                                                 <div class="pet-details">
-                                                    <h1 class="single-pet-name">Lorem Ipsum is simply dummy text</h1>
+                                                    <h1 class="single-pet-name"></h1> <!-- Name Here-->
                                                     <div class="single-pet-reviews">
-                                                        <span class="shopify-pet-reviews-badge" data-id="1912078270534"></span>
+                                                        <span class="shopify-pet-reviews-badge"
+                                                            data-id="1912078270534"></span>
                                                     </div>
-                                                    <div class="pet-sku">SKU: <span class="variant-sku">YQT71020193</span></div>
+                                                    <div class="pet-sku">SKU: <span
+                                                            class="variant-sku">YQT71020193</span>
+                                                    </div>
                                                     <div class="single-pet-price">
-                                                        <div class="pet-discount"><span  class="price" id="petPrice"><span class=money>$20.66</span></span></div>
+                                                        <div class="pet-discount"><span class="price"
+                                                                id="petPrice"><span class=money>$20.66</span></span>
+                                                        </div>
                                                     </div>
-                                                    <div class="pet-info">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-                                  
+                                                    <div class="pet-info"></div> <!-- Description Here -->
+
                                                     <div class="single-pet-action">
-                                                        <div class="pet-variant-option"> 
-                                                            <select name="id" id="petSelect" class="pet-single__variants" style="display:none;">   
-                                                                <option  selected="selected"  data-sku="YQT71020193" value="19506517377094">Default Title - <span class=money>$20.66 USD</span></option>
-                                            
+                                                        <div class="pet-variant-option">
+                                                            <select name="id" id="petSelect"
+                                                                class="pet-single__variants" style="display:none;">
+                                                                <option selected="selected" data-sku="YQT71020193"
+                                                                    value="19506517377094">Default Title - <span
+                                                                        class=money>$20.66 USD</span></option>
+
                                                             </select>
                                                             <script>
-                                                                jQuery(function() {
-                                                                  jQuery('.swatch :radio').change(function() {
-                                                                    var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
-                                                                    var optionValue = jQuery(this).val();
-                                                                    jQuery(this)
-                                                                    .closest('form')
-                                                                    .find('.single-option-selector')
-                                                                    .eq(optionIndex)
-                                                                    .val(optionValue)
-                                                                    .trigger('change');
-                                                                  });
+                                                                jQuery(function () {
+                                                                    jQuery('.swatch :radio').change(function () {
+                                                                        var optionIndex = jQuery(this).closest('.swatch').attr('data-option-index');
+                                                                        var optionValue = jQuery(this).val();
+                                                                        jQuery(this)
+                                                                            .closest('form')
+                                                                            .find('.single-option-selector')
+                                                                            .eq(optionIndex)
+                                                                            .val(optionValue)
+                                                                            .trigger('change');
+                                                                    });
                                                                 });
                                                             </script>
                                                         </div>
-                                                        <style>.pet-variant-option .selector-wrapper{display: none;}</style>
+                                                        <style>
+                                                            .pet-variant-option .selector-wrapper {
+                                                                display: none;
+                                                            }
+                                                        </style>
                                                         <div class="pet-add-to-cart">
                                                             <span class="control-label">Quantity</span>
                                                             <div class="cart-plus-minus">
-                                                                <input class="cart-plus-minus-box" type="text" name="quantity" value="1">
+                                                                <input class="cart-plus-minus-box" type="text"
+                                                                    name="quantity" value="1">
                                                             </div>
                                                             <div class="add">
-                                                                <button type="submit" class="add-to-cart ajax-spin-cart" id="AddToCart">
+                                                                <button type="submit" class="add-to-cart ajax-spin-cart"
+                                                                    id="AddToCart">
                                                                     <i class="ion-bag"></i>
-                                                                    <span class="list-cart-title cart-title" id="AddToCartText">Add to cart</span>
+                                                                    <span class="list-cart-title cart-title"
+                                                                        id="AddToCartText">Add to cart</span>
                                                                 </button>
                                                                 <script>
-                                                                    jQuery('#AddToCart').click(function(e) {
-                                                                    e.preventDefault();
-                                                                    Shopify.addItemFromFormStart('AddToCartForm', 1912078270534);
-                                                                     }); 
+                                                                    jQuery('#AddToCart').click(function (e) {
+                                                                        e.preventDefault();
+                                                                        Shopify.addItemFromFormStart('AddToCartForm', 1912078270534);
+                                                                    }); 
                                                                 </script>
-        
-                                                                <div class="single-pet-wishlist">                    
-                                                                    <a class="add-to-cart action-wishlist wishlist" href="#" title="Wishlist"><i class="fa fa-heart"></i></a>
+
+                                                                <div class="single-pet-wishlist">
+                                                                    <a class="add-to-cart action-wishlist wishlist"
+                                                                        href="#" title="Wishlist"><i
+                                                                            class="fa fa-heart"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="secure-payment"><img src="http://cdn.shopify.com/s/files/1/0067/5617/1846/files/guaranteed_safe_checkout1.png?v=1545216773"></div>                                                                  
-                                                    </div>                                                        
+                                                        <div class="secure-payment"><img
+                                                                src="http://cdn.shopify.com/s/files/1/0067/5617/1846/files/guaranteed_safe_checkout1.png?v=1545216773">
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </form> 
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <style type="text/css">.pet-details .countdown-timer-wrapper{display: none !important;}</style>
-                                                        
-                        <script>$(document).ready(function() {$('.fancybox').fancybox();});</script>
-                        <script>function petZoom(){
+                        <style type="text/css">
+                            .pet-details .countdown-timer-wrapper {
+                                display: none !important;
+                            }
+                        </style>
+
+                        <script>$(document).ready(function () { $('.fancybox').fancybox(); });</script>
+                        <script>function petZoom() {
                                 $(".pet-zoom").elevateZoom({
-                                  gallery: 'petThumbs',
-                                  galleryActiveClass: "active",
-                                  zoomType: "inner",
-                                  cursor: "crosshair"
-                                });$(".pet-zoom").on("click", function(e) {
-                                  var ez = $('.pet-zoom').data('elevateZoom');
-                                  $.fancybox(ez.getGalleryList());
-                                  return false;
+                                    gallery: 'petThumbs',
+                                    galleryActiveClass: "active",
+                                    zoomType: "inner",
+                                    cursor: "crosshair"
+                                }); $(".pet-zoom").on("click", function (e) {
+                                    var ez = $('.pet-zoom').data('elevateZoom');
+                                    $.fancybox(ez.getGalleryList());
+                                    return false;
                                 });
-                                
-                                };
-                              function petZoomDisable(){
-                                if( $(window).width() < 767 ) {
-                                  $('.zoomContainer').remove();
-                                  $(".pet-zoom").removeData('elevateZoom');
-                                  $(".pet-zoom").removeData('zoomImage');
+
+                            };
+                            function petZoomDisable() {
+                                if ($(window).width() < 767) {
+                                    $('.zoomContainer').remove();
+                                    $(".pet-zoom").removeData('elevateZoom');
+                                    $(".pet-zoom").removeData('zoomImage');
                                 } else {
-                                  petZoom();
+                                    petZoom();
                                 }
-                              };
-        
-                              petZoomDisable();
-        
-                              $(window).resize(function() {
+                            };
+
+                            petZoomDisable();
+
+                            $(window).resize(function () {
                                 petZoomDisable();
-                              });
+                            });
                         </script>
                         <script>
                             $('.pet-thumbnail').owlCarousel({
                                 loop: true,
                                 center: true,
-                                nav: true,dots:false,
-                                margin:10,
+                                nav: true, dots: false,
+                                margin: 10,
                                 autoplay: false,
                                 autoplayTimeout: 5000,
                                 navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
@@ -209,5 +255,4 @@
         </div>
     </div>
 </div>
-</div>
-    <%- include('partials/footer.ejs') %>
+<%- include('partials/footer.ejs') %>

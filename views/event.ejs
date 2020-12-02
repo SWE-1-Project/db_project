@@ -1,17 +1,16 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>
-<div class="container-fluid">
-   <div class="row">
-      <div class="col-6 offset-3">
-         <h1 class="text-center" style="margin: 7rem 0 2rem 0;">Events</h1>
-      </div>
+<div id="calendar" class="page container article section-bg" style="padding-bottom: 2rem;">
+   <div class="section-title">
+      <h1 class="text-center" style="margin: 7rem 0 2rem 0; padding-top: 2rem;">Events</h1>
    </div>
+
    <div class="mobile-wrapper">
       <section class="upcoming-events">
          <div class="card container">
             <h6><%- Date(); %></h6>
             <h3>Lastest Events</h3>
-            
+
             <div class="events-wrapper">
                <% for (e of events) { %>
                <div class="event active">
@@ -22,8 +21,8 @@
                   </h4>
                   <!--
                   <span class="event__duration" style="margin-right: 2rem;">starts in  hours</span>
-                 --> 
-                 <p class="event__description">
+                 -->
+                  <p class="event__description">
                      <%= e.content %>
                   </p>
                </div>

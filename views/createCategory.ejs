@@ -1,7 +1,6 @@
 <%- include('partials/head.ejs') %>
 <%- include('partials/header.ejs') %>>
-<div class="container view intro-2" style="height: 6em;"></div>
-<div id="calendar" class="page container article section-bg" style="padding-bottom: 2rem;">
+<div id="createCategory" class="page container article section-bg" style="padding-bottom: 2rem;">
     <div class="section-title">
         <h2 class="text-center" style="padding-top: 2rem;">Create New Category</h2>
     </div>
@@ -31,8 +30,8 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="description"><b>Description</b></label>
-                            <textarea name="description" id="descriptionInput" cols="77" rows="10" placeholder=" Description*"
-                                required></textarea>
+                            <textarea name="description" id="descriptionInput" cols="77" rows="10"
+                                placeholder=" Description*" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -51,10 +50,14 @@
                 <div class="row" style="height: 3em;"></div>
                 <div class="row">
                     <div class="col-4 offset-2 text-center">
-                        <button class="btn btn-outline-primary btn-md btn-rounded btn-navbar waves-effect waves-light border-primary-color text-primary-color hover-border-secondary-color hover-text-secondary-color" type="reset">Reset</button>
+                        <button
+                            class="btn btn-outline-primary btn-md btn-rounded btn-navbar waves-effect waves-light border-primary-color text-primary-color hover-border-secondary-color hover-text-secondary-color"
+                            type="reset">Reset</button>
                     </div>
                     <div class="col-4 text-center">
-                        <button class="btn text-center btn-outline-primary btn-md btn-rounded btn-navbar waves-effect waves-light border-quaternary-color text-quaternary-color hover-border-tertiary-color hover-text-tertiary-color" type="submit">Submit</button>
+                        <button
+                            class="btn text-center btn-outline-primary btn-md btn-rounded btn-navbar waves-effect waves-light border-quaternary-color text-quaternary-color hover-border-tertiary-color hover-text-tertiary-color"
+                            type="submit">Submit</button>
                     </div>
                 </div>
             </form>

@@ -81,6 +81,13 @@ router.get('/blog', (req, res) => {
     })      
 });
 
+// Contact Page Route
+router.get('/contact', (req, res) => {
+    res.render('contact', {
+        title: 'Contact Us'
+    });
+});
+
 // Sign In Check Route => from Nav Button
 router.post('/checkSignin', (req, res) => {
     const email = req.body.email;
@@ -433,7 +440,7 @@ router.post('/submitTag', (req, res) => {
     const name = req.params.name;
     const slug = req.params.slug;
     const description = req.params.description;
-    db.query('INSERT INTO tag (tag_title, slug, description) VALUES ('+ name + ',' + slug + ',' + description + ')',
+    db.query("INSERT INTO tag (tag_title, slug, description) VALUES ('" + name + "','" + slug + "','" + description + "')",
     (err, results) => {
         if (err)
             console.log(err);

@@ -368,6 +368,7 @@ router.get('/createCategory', (req, res) => {
                 console.log(err);
             else if (temp == 'Contributor' || temp == 'Admin') {
                 res.render('createCategory', {
+                    sess: sess,
                     title: 'Create a Category'
                 });
             } else {
@@ -428,6 +429,7 @@ router.get('/createTag', (req, res) => {
                 console.log(err);
             else if (temp == 'Contributor' || temp == 'Admin') {
                 res.render('createTag', {
+                    sess: sess,
                     title: 'Create a Tag'
                 });
             } else {

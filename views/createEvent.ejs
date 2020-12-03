@@ -87,7 +87,7 @@
                         <hr>
                         <% for (t of tags) { %>
                         <div class="form-group form-check"> 
-                            <input type="checkbox" class="form-check-input" id="tag" name="tag" value="<%= t.tag_title%>">
+                            <input type="radio" class="form-check-input" id="tag" name="tag" value="<%= t.tag_title%>">
                             <label class="form-check-label" for="tag"><%= t.tag_title%></label>
                         </div>
                         <% } %>

@@ -96,6 +96,13 @@ router.get('/contact', (req, res) => {
     });
 });
 
+router.get('/volunteerForm', (req, res) => {
+    res.render('volunteerForm', {
+        sess: sess,
+        title: 'Volunteer Form'
+    });
+});
+
 // Sign In Check Route => from Nav Button
 router.post('/checkSignin', (req, res) => {
     const email = req.body.email;

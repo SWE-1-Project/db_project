@@ -96,6 +96,14 @@ router.get('/contact', (req, res) => {
     });
 });
 
+// Adoption Form Page Route
+router.get('/adoptForm', (req, res) => {
+    res.render('adoptForm', {
+        sess: sess,
+        title: 'Adoption Form'
+    });
+});
+
 router.get('/volunteerForm', (req, res) => {
     res.render('volunteerForm', {
         sess: sess,

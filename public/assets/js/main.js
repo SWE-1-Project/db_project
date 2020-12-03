@@ -2,8 +2,8 @@
     
     // hamburger menu show navigation
     $(document).ready(function () {
-        $(".menu-icon").on("click", function () {
-            $("nav ul").toggleClass("showing");
+        $('.menu-icon').on(click, function () {
+            $('ul').addClass("collapse"); 
         });
     });
     
